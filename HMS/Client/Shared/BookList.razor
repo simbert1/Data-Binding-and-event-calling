@@ -1,0 +1,29 @@
+﻿@if (book == null)
+{
+    <text>Loading Items.....</text>
+}
+else if (book.Count == 0)
+{
+    <text>There are no books to display</text>
+}
+else
+{
+
+    <input type="checkbox" @bind="displayButtons"/>
+    @foreach (var book_ in book)
+    {
+        <IndividualBookList book=" book_ " DisplayButtons="displayButtons" DeleteBooks="DeleteBook"></IndividualBookList>
+        <div>
+           
+        </div>
+    }
+}
+
+@code {
+    [Parameter] public List<Books> book { get; set; }
+    bool displayButtons = false;
+    private void DeleteBook(Books books)
+    {
+        book.Remove(books);
+    }
+}
